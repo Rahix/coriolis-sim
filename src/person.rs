@@ -18,7 +18,7 @@ pub struct Person {
 impl Person {
     pub fn new(feet_x: f32, feet_y: f32, omega: f32, rmax: f32) -> Person {
         let mut feet = PhysicsObj::new(Vec2::new_xy(feet_x,feet_y), omega, rmax);
-        let mut head = PhysicsObj::new(Vec2::new_xy(feet_x, feet_y - 40.0), omega, rmax);
+        let mut head = PhysicsObj::new(Vec2::new_xy(feet_x, feet_y + 40.0), omega, rmax);
         Person {
             feet: feet,
             head: head,
@@ -65,9 +65,22 @@ fn draw_vel_acc_arrows(pos: Vec2, vel: &mut Vec2, acc: &mut Vec2, target: &mut R
 impl Entity for Person {
     fn update(&mut self, t: &Time) {
         let time = t.as_seconds();
+        //Constraint
+        let feet_pos = self.feet.get_position();
+        let head_pos = self.head.get_position();
+        let dist_vec = head_pos + feet_pos.scalar_product(-1.0);
+        let mut acc = (dist_vec.get_r() - 40.0) * 16000.0;
+        let acc_damp = (self.head.get_vel() + self.feet.get_vel().scalar_product(-1.0)).scalar_product(-5.0);
+        let mut acc_standup = Vec2::new_xy(0.0, 0.0);
+        if self.feet.on_floor() {
+            acc_standup = Vec2::new_rt(8000.0, head_pos.get_t() + consts::PI);
+        }
+        //self.feet.custom_acc(Vec2::new_rt(acc, dist_vec.get_t()));
+        self.head.custom_acc(Vec2::new_rt(acc, dist_vec.scalar_product(-1.0).get_t())+ acc_standup + acc_damp);
         self.feet.tick(time - self.last_time);
         self.head.tick(time - self.last_time);
         self.last_time = time;
+        //print!("{}\t{}\t{}\t{}\n", feet_pos.get_x(), feet_pos.get_y(), head_pos.get_x(), head_pos.get_y());
         //print!("{}\n", self.feet.get_position().get_t() * (360.0/(2.0*consts::PI)));
     }
 
@@ -124,7 +137,7 @@ impl Entity for Person {
 
     fn handle_event(&mut self, ev: CoriolisEvent) {
         match ev {
-            CoriolisEvent::Jump(vel) => self.feet.jump(vel),
+            CoriolisEvent::Jump(vel) => {self.feet.jump(vel);self.head.jump(vel);},
         }
     }
 }

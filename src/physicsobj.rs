@@ -7,6 +7,7 @@ pub struct PhysicsObj {
     pos: Vec2,
     vel: Vec2,
     acc: Vec2,
+    custom_acc: Vec2,
     omega: f32,
     max_radius: f32,
 }
@@ -17,6 +18,7 @@ impl PhysicsObj {
             pos: pos,// + Vec2::new_xy(100.0, 0.0),
             vel: Vec2::new_xy(0.0, -300.0),
             acc: Vec2::new_xy(0.0,0.0),
+            custom_acc: Vec2::new_xy(0.0,0.0),
             omega: omega,
             max_radius: max_radius,
         }
@@ -31,7 +33,7 @@ impl PhysicsObj {
             acc_circle = self.pos.scalar_product(-(self.omega * self.omega));
             self.vel = Vec2::new_rt(self.omega * self.max_radius, self.pos.get_t() + consts::PI / 2.0);
         }
-        self.acc = acc_circle;
+        self.acc = acc_circle + self.custom_acc;
         // Next step of velocity based on acceleration
         self.vel = self.vel + self.acc.scalar_product(elapsed);
         // Next step of position based on velocity
@@ -63,5 +65,13 @@ impl PhysicsObj {
             self.vel = self.vel + jump_vel;
             self.pos.set_r(self.max_radius - 1.0);
         }
+    }
+
+    pub fn on_floor(&self) -> bool {
+        self.pos.get_r() >= ( self. max_radius - 5.0 )
+    }
+
+    pub fn custom_acc(&mut self, acc: Vec2) {
+        self.custom_acc = acc;
     }
 }

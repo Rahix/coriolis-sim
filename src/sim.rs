@@ -54,7 +54,7 @@ impl CoriolisSim {
         for event in self.window.events() {
             match event {
                 event::Closed => self.state = GameState::Exit,
-                event::KeyReleased{code: code, alt: alt, ctrl: ctrl, shift: shift, system: system} => self.world.send_event(CoriolisEvent::Jump(200.0)),
+                event::KeyReleased{code: code, alt: alt, ctrl: ctrl, shift: shift, system: system} => self.world.send_event(CoriolisEvent::Jump(400.0)),
                 /*event::KeyPressed(ev) => {
                     if let GameState::Idle = self.state {
                         self.state = GameState::Simulating;
