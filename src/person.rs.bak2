@@ -1,0 +1,38 @@
+extern crate sfml;
+
+use self::sfml::system::Time;
+use self::sfml::graphics::{Color, Texture, Sprite, CircleShape, RenderWindow, RenderTarget};
+use self::sfml::system::Vector2f;
+
+use entity::Entity;
+
+struct PhysicsObj {
+}
+
+impl PhysicsObj {
+    pub fn new(radius: f64, theta: f64, omega: f64, acceleration: f64) -> PhysicsObj {
+    }
+
+}
+
+pub struct Person {
+    feet: PhysicsObj,
+    rmax: f32,
+}
+
+impl Person {
+    pub fn new(feet_x: f32, feet_y: f32, omega: f32, rmax: f32) -> Person {
+    }
+}
+
+impl Entity for Person {
+    fn update(&mut self, t: &Time) {
+        }
+    fn draw(&self, target: &mut RenderWindow) {
+        let mut ballkugel = CircleShape::new_init(20.0, 16).unwrap();
+        ballkugel.set_origin2f(20.0,20.0);
+        ballkugel.set_position2f(self.feet.get_x() as f32, self.feet.get_y() as f32);
+        ballkugel.set_fill_color(&Color::cyan());
+        target.draw(&ballkugel);
+    }
+}

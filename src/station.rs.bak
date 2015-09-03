@@ -1,0 +1,47 @@
+extern crate sfml;
+
+use self::sfml::system::Time;
+use self::sfml::graphics::{Texture, Sprite, CircleShape, RenderWindow, RenderTarget};
+
+use entity::Entity;
+
+use std::cell::RefCell;
+
+pub struct Station<'a> {
+    tex: &'a Texture,
+    sprite: Sprite<'a>,
+    circle: CircleShape<'a>,
+    radius: f32,
+    rotation: f32,
+    omega: f32,
+}
+
+impl<'a> Station<'a> {
+    pub fn new<'b>(radius: f32, omega: f32) -> Station<'b> {
+        let tex: &'b Texture = &RefCell::new(Texture::new_from_file("res/StationCross.png").unwrap()).into_inner();
+        let mut station = Station {
+            radius: radius,
+            rotation: 0.0,
+            omega: omega,
+            tex: tex,
+            sprite: Sprite::new().unwrap(),
+            circle: CircleShape::new_init(radius, 64).unwrap(),
+        };
+        station.sprite.set_texture(&station.tex, true);
+        station.sprite.set_origin2f(256.0, 256.0);
+        station.circle.set_origin2f(radius/2.0,radius/2.0);
+        station.circle.set_position2f(0.0, 0.0);
+        station
+    }
+}
+
+impl<'a> Entity for Station<'a> {
+    fn update(&mut self, t: &Time) {
+        self.rotation = self.omega * t.as_seconds();
+        self.sprite.set_rotation(self.rotation);
+    }
+    fn draw(&self, target: &mut RenderWindow) {
+        target.draw(&self.circle);
+        target.draw(&self.sprite);
+    }
+}
