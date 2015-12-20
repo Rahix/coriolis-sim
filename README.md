@@ -18,4 +18,10 @@ $0 | $1 | $2
 ---|----|---
 Time|x|y
 
+So use
+```gnuplot
+plot 'gnuplot_data' using ($1):($2) with lines
+```
+to show them.
+
 And yes, I know the background does not look like a coriolis station at all.
