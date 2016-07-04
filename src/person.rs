@@ -1,7 +1,7 @@
 extern crate sfml;
 
 use self::sfml::system::Time;
-use self::sfml::graphics::{Color, Texture, Sprite, CircleShape, RenderWindow, RenderTarget, Vertex, VertexArray, PrimitiveType};
+use self::sfml::graphics::{Color, Texture, Sprite, CircleShape, RenderWindow, RenderTarget, Vertex, VertexArray, PrimitiveType, Transformable, Shape};
 use self::sfml::system::Vector2f;
 
 use entity::{Entity, CoriolisEvent};
@@ -28,7 +28,7 @@ impl Person {
 }
 
 fn draw_vel_acc_arrows(pos: Vec2, vel: &mut Vec2, acc: &mut Vec2, target: &mut RenderWindow) {
-    let mut velocity_arrow = VertexArray::new_init(PrimitiveType::Lines, 2).unwrap();
+    let mut velocity_arrow = VertexArray::new_init(PrimitiveType::sfLines, 2).unwrap();
     velocity_arrow.append(
         &Vertex::new_with_pos_color(
             &Vector2f::new(
@@ -43,7 +43,7 @@ fn draw_vel_acc_arrows(pos: Vec2, vel: &mut Vec2, acc: &mut Vec2, target: &mut R
                 pos.get_x() + vel.get_x(),
                 pos.get_y() + vel.get_y()),
             &Color::green()));
-    let mut acceleration_arrow = VertexArray::new_init(PrimitiveType::Lines, 2).unwrap();
+    let mut acceleration_arrow = VertexArray::new_init(PrimitiveType::sfLines, 2).unwrap();
     acceleration_arrow.append(
         &Vertex::new_with_pos_color(
             &Vector2f::new(

@@ -1,7 +1,7 @@
 extern crate sfml;
 
 use self::sfml::system::{Vector2f, Clock};
-use self::sfml::window::{ContextSettings, VideoMode, event, Close};
+use self::sfml::window::{ContextSettings, VideoMode, event, window_style};
 use self::sfml::graphics::{RenderWindow, RenderTarget, View, CircleShape, Color};
 
 use entity::{Entity, World, CoriolisEvent};
@@ -29,7 +29,7 @@ impl CoriolisSim {
     pub fn new() -> CoriolisSim {
         let mut window = match RenderWindow::new(VideoMode::new_init(800, 600, 32),
                                               "Coriolis Station Simulation",
-                                              Close,
+                                              window_style::CLOSE,
                                               &ContextSettings::default()) {
             Some(window) => window,
             None => panic!("Cannot create window!!"),
@@ -77,7 +77,7 @@ impl CoriolisSim {
         }
         self.window = match RenderWindow::new(VideoMode::new_init(800, 600, 32),
                                               "Coriolis Station Simulation",
-                                              Close,
+                                              window_style::CLOSE,
                                               &ContextSettings::default()) {
             Some(window) => window,
             None => panic!("Cannot create window!!"),

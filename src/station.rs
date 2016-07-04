@@ -1,7 +1,7 @@
 extern crate sfml;
 
 use self::sfml::system::Time;
-use self::sfml::graphics::{Texture, Sprite, CircleShape, RenderWindow, RenderTarget};
+use self::sfml::graphics::{Texture, Sprite, CircleShape, RenderWindow, RenderTarget, Transformable};
 
 use entity::{Entity, CoriolisEvent};
 use std::rc::Rc;
