@@ -82,8 +82,8 @@ impl CoriolisSim {
             Some(window) => window,
             None => panic!("Cannot create window!!"),
         };
-        let mut station = Station::new(300.0, consts::FRAC_PI_8);
-        let mut person = Person::new(0.0, 0.0, consts::FRAC_PI_8, 280.0);
+        let mut station = Station::new(300.0, consts::FRAC_PI_2);
+        let mut person = Person::new(0.0, 0.0, consts::FRAC_PI_2, 280.0);
         self.world.add(station);
         self.world.add(person);
         self.view.set_center2f(0.0, 0.0);
