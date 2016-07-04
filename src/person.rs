@@ -81,7 +81,7 @@ impl Entity for Person {
         self.feet.tick(time - self.last_time);
         self.head.tick(time - self.last_time);
         self.last_time = time;
-        //print!("{}\t{}\t{}\t{}\n", feet_pos.get_x(), feet_pos.get_y(), head_pos.get_x(), head_pos.get_y());
+        print!("{}\t{}\t{}\t{}\n", feet_pos.get_x(), feet_pos.get_y(), head_pos.get_x(), head_pos.get_y());
         //print!("{}\n", self.feet.get_position().get_t() * (360.0/(2.0*consts::PI)));
     }
 

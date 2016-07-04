@@ -54,7 +54,7 @@ impl CoriolisSim {
         for event in self.window.events() {
             match event {
                 event::Closed => self.state = GameState::Exit,
-                event::KeyReleased{code: code, alt: alt, ctrl: ctrl, shift: shift, system: system} => self.world.send_event(CoriolisEvent::Jump(400.0)),
+                event::KeyReleased{code: code, alt: alt, ctrl: ctrl, shift: shift, system: system} => self.world.send_event(CoriolisEvent::Jump(500.0)),
                 /*event::KeyPressed(ev) => {
                     if let GameState::Idle = self.state {
                         self.state = GameState::Simulating;
@@ -82,8 +82,8 @@ impl CoriolisSim {
             Some(window) => window,
             None => panic!("Cannot create window!!"),
         };
-        let mut station = Station::new(300.0, consts::FRAC_PI_2);
-        let mut person = Person::new(0.0, 0.0, consts::FRAC_PI_2, 280.0);
+        let mut station = Station::new(300.0, consts::FRAC_PI_8);
+        let mut person = Person::new(0.0, 0.0, consts::FRAC_PI_8, 280.0);
         self.world.add(station);
         self.world.add(person);
         self.view.set_center2f(0.0, 0.0);
