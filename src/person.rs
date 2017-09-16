@@ -74,7 +74,7 @@ impl Entity for Person {
         let mut acc_standup = Vec2::new_xy(0.0, 0.0);
         if self.feet.on_floor() {
             acc_standup = Vec2::new_rt(8000.0, head_pos.get_t() + consts::PI);
-            acc_damp = (self.head.get_vel() + self.feet.get_vel().scalar_product(-1.0)).scalar_product(-3.0);
+            acc_damp = (self.head.get_vel() + self.feet.get_vel().scalar_product(-1.0)).scalar_product(-12.0);
         }
         //self.feet.custom_acc(Vec2::new_rt(acc, dist_vec.get_t()));
         self.head.custom_acc(Vec2::new_rt(acc, dist_vec.scalar_product(-1.0).get_t())+ acc_standup + acc_damp);
