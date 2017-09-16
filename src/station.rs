@@ -13,6 +13,7 @@ pub struct Station<'a> {
     radius: f32,
     rotation: f32,
     omega: f32,
+    align_view: bool,
 }
 
 impl<'a> Station<'a> {
@@ -23,6 +24,7 @@ impl<'a> Station<'a> {
             omega: omega,
             tex: Texture::new_from_file("res/StationCross.png").unwrap(),
             circle: CircleShape::new_init(radius, 64).unwrap(),
+            align_view: false, // Set to true if you want the view to be aligned to the rotation
         };
         station.circle.set_origin2f(radius,radius);
         //station.sprite.set_texture(&station.tex, true);
@@ -45,6 +47,12 @@ impl<'a> Entity for Station<'a> {
         sprite.set_rotation(self.rotation);
         target.draw(&self.circle);
         target.draw(&sprite);
+
+        if self.align_view {
+            let mut view = target.get_view().to_owned();
+            view.set_rotation(self.rotation);
+            target.set_view(&view);
+        }
     }
 
     fn handle_event(&mut self, ev: CoriolisEvent) {
