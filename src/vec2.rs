@@ -1,6 +1,5 @@
 // A vec2 implementation
 use std::ops::Add;
-use std::ops::Mul;
 
 #[derive(Copy, Clone)]
 pub struct Vec2 {
@@ -37,27 +36,27 @@ impl Vec2 {
         self.y.atan2(self.x)
     }
 
-    pub fn set_t(&mut self, theta: f32) {
+    /*pub fn set_t(&mut self, theta: f32) {
         let radius = self.get_r();
         self.x = radius*theta.cos();
         self.y = radius*theta.sin();
-    }
+    }*/
 
     pub fn get_x(&self) -> f32 {
         self.x
     }
 
-    pub fn set_x(&mut self, x: f32) {
+    /*pub fn set_x(&mut self, x: f32) {
         self.x = x;
-    }
+    }*/
 
     pub fn get_y(&self) -> f32 {
         self.y
     }
 
-    pub fn set_y(&mut self, y: f32) {
+    /*pub fn set_y(&mut self, y: f32) {
         self.y = y;
-    }
+    }*/
 
     pub fn scalar_product(&self, num: f32) -> Vec2 {
         Vec2 {

@@ -1,10 +1,10 @@
 extern crate sfml;
 
-use self::sfml::system::{Vector2f, Clock};
+use self::sfml::system::Clock;
 use self::sfml::window::{ContextSettings, VideoMode, event, window_style};
-use self::sfml::graphics::{RenderWindow, RenderTarget, View, CircleShape, Color};
+use self::sfml::graphics::{RenderWindow, RenderTarget, View, Color};
 
-use entity::{Entity, World, CoriolisEvent};
+use entity::{World, CoriolisEvent};
 use station::Station;
 use person::Person;
 
@@ -13,7 +13,6 @@ use std::f32::consts;
 enum GameState {
     Uninitialized,
     Idle,
-    Simulating,
     Exit,
 }
 
@@ -27,7 +26,7 @@ pub struct CoriolisSim {
 
 impl CoriolisSim {
     pub fn new() -> CoriolisSim {
-        let mut window = match RenderWindow::new(VideoMode::new_init(800, 600, 32),
+        let window = match RenderWindow::new(VideoMode::new_init(800, 600, 32),
                                               "Coriolis Station Simulation",
                                               window_style::CLOSE,
                                               &ContextSettings::default()) {
@@ -47,14 +46,12 @@ impl CoriolisSim {
         match self.state {
             GameState::Idle => {
                 }
-            GameState::Simulating => {
-                },
             _ => {},
         }
         for event in self.window.events() {
             match event {
                 event::Closed => self.state = GameState::Exit,
-                event::KeyReleased{code: code, alt: alt, ctrl: ctrl, shift: shift, system: system} => self.world.send_event(CoriolisEvent::Jump(500.0)),
+                event::KeyReleased{code: _, alt: _, ctrl: _, shift: _, system: _} => self.world.send_event(CoriolisEvent::Jump(500.0)),
                 /*event::KeyPressed(ev) => {
                     if let GameState::Idle = self.state {
                         self.state = GameState::Simulating;
@@ -82,8 +79,8 @@ impl CoriolisSim {
             Some(window) => window,
             None => panic!("Cannot create window!!"),
         };
-        let mut station = Station::new(300.0, consts::FRAC_PI_2);
-        let mut person = Person::new(0.0, 0.0, consts::FRAC_PI_2, 280.0);
+        let station = Station::new(300.0, consts::FRAC_PI_2);
+        let person = Person::new(0.0, 0.0, consts::FRAC_PI_2, 280.0);
         self.world.add(station);
         self.world.add(person);
         self.view.set_center2f(0.0, 0.0);

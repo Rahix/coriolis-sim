@@ -4,13 +4,11 @@ use self::sfml::system::Time;
 use self::sfml::graphics::{Texture, Sprite, CircleShape, RenderWindow, RenderTarget, Transformable};
 
 use entity::{Entity, CoriolisEvent};
-use std::rc::Rc;
 use std::f32::consts;
 
 pub struct Station<'a> {
     tex: Texture,
     circle: CircleShape<'a>,
-    radius: f32,
     rotation: f32,
     omega: f32,
     align_view: bool,
@@ -19,12 +17,11 @@ pub struct Station<'a> {
 impl<'a> Station<'a> {
     pub fn new<'b>(radius: f32, omega: f32) -> Station<'b> {
         let mut station = Station {
-            radius: radius,
             rotation: 0.0,
             omega: omega,
             tex: Texture::new_from_file("res/StationCross.png").unwrap(),
             circle: CircleShape::new_init(radius, 64).unwrap(),
-            align_view: false, // Set to true if you want the view to be aligned to the rotation
+            align_view: true, // Set to true if you want the view to be aligned to the rotation
         };
         station.circle.set_origin2f(radius,radius);
         //station.sprite.set_texture(&station.tex, true);
@@ -55,6 +52,6 @@ impl<'a> Entity for Station<'a> {
         }
     }
 
-    fn handle_event(&mut self, ev: CoriolisEvent) {
+    fn handle_event(&mut self, _: CoriolisEvent) {
     }
 }

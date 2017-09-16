@@ -1,7 +1,7 @@
 extern crate sfml;
 
 use self::sfml::system::Time;
-use self::sfml::graphics::{Color, Texture, Sprite, CircleShape, RenderWindow, RenderTarget, Vertex, VertexArray, PrimitiveType, Transformable, Shape};
+use self::sfml::graphics::{Color, CircleShape, RenderWindow, RenderTarget, Vertex, VertexArray, PrimitiveType, Transformable, Shape};
 use self::sfml::system::Vector2f;
 
 use entity::{Entity, CoriolisEvent};
@@ -17,8 +17,8 @@ pub struct Person {
 
 impl Person {
     pub fn new(feet_x: f32, feet_y: f32, omega: f32, rmax: f32) -> Person {
-        let mut feet = PhysicsObj::new(Vec2::new_xy(feet_x,feet_y), omega, rmax);
-        let mut head = PhysicsObj::new(Vec2::new_xy(feet_x, feet_y + 40.0), omega, rmax);
+        let feet = PhysicsObj::new(Vec2::new_xy(feet_x,feet_y), omega, rmax);
+        let head = PhysicsObj::new(Vec2::new_xy(feet_x, feet_y + 40.0), omega, rmax);
         Person {
             feet: feet,
             head: head,
@@ -69,7 +69,7 @@ impl Entity for Person {
         let feet_pos = self.feet.get_position();
         let head_pos = self.head.get_position();
         let dist_vec = head_pos + feet_pos.scalar_product(-1.0);
-        let mut acc = (dist_vec.get_r() - 40.0) * 16000.0;
+        let acc = (dist_vec.get_r() - 40.0) * 16000.0;
         let mut acc_damp = Vec2::new_xy(0.0, 0.0); //(self.head.get_vel() + self.feet.get_vel().scalar_product(-1.0)).scalar_product(-5.0);
         let mut acc_standup = Vec2::new_xy(0.0, 0.0);
         if self.feet.on_floor() {

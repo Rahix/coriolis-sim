@@ -27,7 +27,7 @@ impl PhysicsObj {
     pub fn tick(&mut self, elapsed: f32) {
         // If person touches max_radius, set acceleration
         let mut acc_circle = Vec2::new_xy(0.0, 0.0);
-        if(self.pos.get_r() >= self.max_radius) {
+        if self.pos.get_r() >= self.max_radius {
             //self.acc.set_x(-(self.omega * self.omega) * self.pos.get_x());
             //self.acc.set_y(-(self.omega * self.omega) * self.pos.get_y());
             acc_circle = self.pos.scalar_product(-(self.omega * self.omega));
