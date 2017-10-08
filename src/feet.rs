@@ -24,7 +24,7 @@ pub fn create(sys: &mut ecs::System) -> ecs::Entity {
     feet.circle.set_fill_color(&sfml::graphics::Color::GREEN);
 
     sys.add(ent, feet).unwrap();
-    sys.add(ent, physics::Position(na::Point2::new(200.0, 0.0))).unwrap();
+    sys.add(ent, physics::Position(na::Point2::new(0.0, 0.0))).unwrap();
     sys.add(ent, physics::Velocity(na::Vector2::new(0.0, 200.0))).unwrap();
     sys.add(ent, physics::Acceleration(na::Vector2::new(0.0, 0.0))).unwrap();
     sys.add(ent, drawable::Drawable::new(draw)).unwrap();

@@ -12,6 +12,7 @@ mod drawable;
 
 mod station;
 mod feet;
+mod head;
 
 pub const ANGULAR_VELOCITY: f32 = std::f32::consts::PI / 2.0;
 pub const JUMP_SPEED: f32 = 500.0;

@@ -7,6 +7,7 @@ use physics;
 
 use station;
 use feet;
+use head;
 
 pub fn coriolis_sim() {
     let mut graphics = graphics::Graphics::new();
@@ -14,6 +15,7 @@ pub fn coriolis_sim() {
 
     let station = station::create(&mut system);
     let feet = feet::create(&mut system);
+    let head = head::create(&mut system, feet);
 
     let mut previous_time = ::std::time::Instant::now();
 
@@ -41,6 +43,7 @@ pub fn coriolis_sim() {
 
             station::draw(&system, station, &mut graphics);
             feet::draw(&system, feet, &mut graphics);
+            head::draw(&system, head, &mut graphics);
 
             graphics.window.display();
 
