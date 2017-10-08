@@ -2,95 +2,221 @@
 name = "coriolis-sim"
 version = "0.1.0"
 dependencies = [
- "sfml 0.11.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "eagre-ecs 0.1.0 (git+https://github.com/Rahix/eagre-ecs)",
+ "nalgebra 0.13.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sfml 0.14.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
+name = "alga"
+version = "0.5.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "approx 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "num-complex 0.1.40 (registry+https://github.com/rust-lang/crates.io-index)",
+ "num-traits 0.1.40 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "approx"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
 name = "bitflags"
-version = "0.5.0"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "bitflags"
+version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "csfml-audio-sys"
-version = "0.1.0"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "csfml-system-sys 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "libc 0.2.30 (registry+https://github.com/rust-lang/crates.io-index)",
- "sfml-types 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "csfml-system-sys 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sfml-build 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "csfml-graphics-sys"
-version = "0.1.0"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "csfml-system-sys 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "csfml-window-sys 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "libc 0.2.30 (registry+https://github.com/rust-lang/crates.io-index)",
- "sfml-types 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
-]
-
-[[package]]
-name = "csfml-network-sys"
-version = "0.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-dependencies = [
- "csfml-system-sys 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "libc 0.2.30 (registry+https://github.com/rust-lang/crates.io-index)",
- "sfml-types 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "csfml-system-sys 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "csfml-window-sys 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sfml-build 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "csfml-system-sys"
-version = "0.1.0"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "libc 0.2.30 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sfml-build 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "csfml-window-sys"
-version = "0.1.1"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "csfml-system-sys 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "libc 0.2.30 (registry+https://github.com/rust-lang/crates.io-index)",
- "sfml-types 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "csfml-system-sys 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sfml-build 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "eagre-ecs"
+version = "0.1.0"
+source = "git+https://github.com/Rahix/eagre-ecs#0365d6d404f0f52c5a3e08a75ee9746e6612fce6"
+
+[[package]]
+name = "fuchsia-zircon"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "fuchsia-zircon-sys 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "fuchsia-zircon-sys"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "bitflags 0.7.0 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "generic-array"
+version = "0.8.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "nodrop 0.1.9 (registry+https://github.com/rust-lang/crates.io-index)",
+ "typenum 1.9.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "libc"
-version = "0.2.30"
+version = "0.2.32"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "matrixmultiply"
+version = "0.1.13"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "rawpointer 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "nalgebra"
+version = "0.13.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "alga 0.5.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "approx 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "generic-array 0.8.3 (registry+https://github.com/rust-lang/crates.io-index)",
+ "matrixmultiply 0.1.13 (registry+https://github.com/rust-lang/crates.io-index)",
+ "num-complex 0.1.40 (registry+https://github.com/rust-lang/crates.io-index)",
+ "num-traits 0.1.40 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rand 0.3.17 (registry+https://github.com/rust-lang/crates.io-index)",
+ "typenum 1.9.0 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "nodrop"
+version = "0.1.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "odds 0.2.25 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "num-complex"
+version = "0.1.40"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "num-traits 0.1.40 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-serialize 0.3.24 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "num-traits"
+version = "0.1.40"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "odds"
+version = "0.2.25"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "rand"
+version = "0.3.17"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "fuchsia-zircon 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.2.32 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "rawpointer"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "rustc-serialize"
+version = "0.3.24"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "sfml"
-version = "0.11.2"
+version = "0.14.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "bitflags 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "csfml-audio-sys 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "csfml-graphics-sys 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "csfml-network-sys 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "csfml-system-sys 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "csfml-window-sys 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "libc 0.2.30 (registry+https://github.com/rust-lang/crates.io-index)",
- "sfml-types 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "bitflags 1.0.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "csfml-audio-sys 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "csfml-graphics-sys 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "csfml-system-sys 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "csfml-window-sys 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
-name = "sfml-types"
-version = "0.1.0"
+name = "sfml-build"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "typenum"
+version = "1.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [metadata]
-"checksum bitflags 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)" = "4f67931368edf3a9a51d29886d245f1c3db2f1ef0dcc9e35ff70341b78c10d23"
-"checksum csfml-audio-sys 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "f03e143b2470cbe317a57c17661f315f9565e4187ea85335ad7839dc57aa6bd0"
-"checksum csfml-graphics-sys 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "72e888a8cc664674eb47271d1042fc2df09a03fd7eb1585d691f0503dce19c55"
-"checksum csfml-network-sys 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "bd11432924734b45b6478ee384ad84591274a9f277997771ca2cd57ebf03940e"
-"checksum csfml-system-sys 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "f613309f92bca2549e066286580d0ab69809afba4675c3fc0c7943409c77206d"
-"checksum csfml-window-sys 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)" = "f74f961b69749ca7e62ad66b7959ab62f63847826d8cb3a068250fcbd1c3fbcf"
-"checksum libc 0.2.30 (registry+https://github.com/rust-lang/crates.io-index)" = "2370ca07ec338939e356443dac2296f581453c35fe1e3a3ed06023c49435f915"
-"checksum sfml 0.11.2 (registry+https://github.com/rust-lang/crates.io-index)" = "796ac61674669d1cbc9a444af283aa622c8bf018692a9ec4dc39ff9445615469"
-"checksum sfml-types 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "d81c513af1beb0d4105ac8269dc0f8405d0e1bbf0d589af1b882fb515d7c5758"
+"checksum alga 0.5.2 (registry+https://github.com/rust-lang/crates.io-index)" = "9a9749cf5cfdca30ac35de67358fb24e2d26a88e2819ee83efb794a09f0b421b"
+"checksum approx 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)" = "08abcc3b4e9339e33a3d0a5ed15d84a687350c05689d825e0f6655eef9e76a94"
+"checksum bitflags 0.7.0 (registry+https://github.com/rust-lang/crates.io-index)" = "aad18937a628ec6abcd26d1489012cc0e18c21798210f491af69ded9b881106d"
+"checksum bitflags 1.0.0 (registry+https://github.com/rust-lang/crates.io-index)" = "f5cde24d1b2e2216a726368b2363a273739c91f4e3eb4e0dd12d672d396ad989"
+"checksum csfml-audio-sys 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)" = "c3f55bfdd00e6ded8b4bbf62acfe7e62a493584a7b0774642dac59d822061aa4"
+"checksum csfml-graphics-sys 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)" = "d508c34b7376ca0450422ee11642b5aba43bde59673c822bb436e9fc126d8487"
+"checksum csfml-system-sys 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)" = "226869ac0651d7592d2fc0795f5e44101fbd7b22548d6cf6f0e0e74e54efa1fd"
+"checksum csfml-window-sys 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)" = "86fd0d9840a9f92ae0960cef634c1b5781b15847dbb099a9ee6021bb5c1cb618"
+"checksum eagre-ecs 0.1.0 (git+https://github.com/Rahix/eagre-ecs)" = "<none>"
+"checksum fuchsia-zircon 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)" = "f6c0581a4e363262e52b87f59ee2afe3415361c6ec35e665924eb08afe8ff159"
+"checksum fuchsia-zircon-sys 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "43f3795b4bae048dc6123a6b972cadde2e676f9ded08aef6bb77f5f157684a82"
+"checksum generic-array 0.8.3 (registry+https://github.com/rust-lang/crates.io-index)" = "fceb69994e330afed50c93524be68c42fa898c2d9fd4ee8da03bd7363acd26f2"
+"checksum libc 0.2.32 (registry+https://github.com/rust-lang/crates.io-index)" = "56cce3130fd040c28df6f495c8492e5ec5808fb4c9093c310df02b0c8f030148"
+"checksum matrixmultiply 0.1.13 (registry+https://github.com/rust-lang/crates.io-index)" = "7ce012d2c43046267a74283eaa7e9a51941479901e2b86702be10f27e2779158"
+"checksum nalgebra 0.13.0 (registry+https://github.com/rust-lang/crates.io-index)" = "2985c9ca65da8e6b88be08d7472feaa03afbda2438db725c4bd3a75c3e35ee6f"
+"checksum nodrop 0.1.9 (registry+https://github.com/rust-lang/crates.io-index)" = "52cd74cd09beba596430cc6e3091b74007169a56246e1262f0ba451ea95117b2"
+"checksum num-complex 0.1.40 (registry+https://github.com/rust-lang/crates.io-index)" = "503e668405c5492d67cf662a81e05be40efe2e6bcf10f7794a07bd9865e704e6"
+"checksum num-traits 0.1.40 (registry+https://github.com/rust-lang/crates.io-index)" = "99843c856d68d8b4313b03a17e33c4bb42ae8f6610ea81b28abe076ac721b9b0"
+"checksum odds 0.2.25 (registry+https://github.com/rust-lang/crates.io-index)" = "c3df9b730298cea3a1c3faa90b7e2f9df3a9c400d0936d6015e6165734eefcba"
+"checksum rand 0.3.17 (registry+https://github.com/rust-lang/crates.io-index)" = "61efcbcd9fa8d8fbb07c84e34a8af18a1ff177b449689ad38a6e9457ecc7b2ae"
+"checksum rawpointer 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "ebac11a9d2e11f2af219b8b8d833b76b1ea0e054aa0e8d8e9e4cbde353bdf019"
+"checksum rustc-serialize 0.3.24 (registry+https://github.com/rust-lang/crates.io-index)" = "dcf128d1287d2ea9d80910b5f1120d0b8eede3fbf1abe91c40d39ea7d51e6fda"
+"checksum sfml 0.14.0 (registry+https://github.com/rust-lang/crates.io-index)" = "47b06f9db4d3f8b936d232d92bfbd6335060ae51ddcf1be2e79361aeb5c8fef1"
+"checksum sfml-build 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "ff35ae173aff95bc967d1b4f0e131a8aec384c317fd057738da4b0f71c8cf841"
+"checksum typenum 1.9.0 (registry+https://github.com/rust-lang/crates.io-index)" = "13a99dc6780ef33c78780b826cf9d2a78840b72cae9474de4bcaf9051e60ebbd"

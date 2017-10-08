@@ -1,7 +1,11 @@
 [package]
+authors = ["Rahix <h.w.seiler@gmx.de>"]
 name = "coriolis-sim"
 version = "0.1.0"
-authors = ["Rahix <h.w.seiler@gmx.de>"]
 
 [dependencies]
-sfml = '0.11.2'
+nalgebra = "0.13.0"
+sfml = "0.14.0"
+
+[dependencies.eagre-ecs]
+git = "https://github.com/Rahix/eagre-ecs"
