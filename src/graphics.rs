@@ -9,10 +9,13 @@ impl Graphics {
     pub fn new() -> Graphics {
         use sfml::graphics::RenderTarget;
 
+        let mut settings = sfml::window::ContextSettings::default();
+        settings.antialiasing_level = 8;
+
         let mut window = sfml::graphics::RenderWindow::new(sfml::window::VideoMode::new(800, 600, 32),
                                                        "Coriolis Station Simulation",
                                                        sfml::window::Style::CLOSE,
-                                                       &sfml::window::ContextSettings::default());
+                                                       &settings);
         window.set_view(&sfml::graphics::View::new(sfml::system::Vector2::new(0.0, 0.0), sfml::system::Vector2::new(800.0, 600.0)));
         Graphics {
             window,
