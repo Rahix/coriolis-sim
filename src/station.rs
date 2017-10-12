@@ -1,57 +1,63 @@
-extern crate sfml;
+use ecs;
+use sfml;
+use graphics;
 
-use self::sfml::system::Time;
-use self::sfml::graphics::{Texture, Sprite, CircleShape, RenderWindow, RenderTarget, Transformable};
+use drawable;
+use physics;
 
-use entity::{Entity, CoriolisEvent};
-use std::f32::consts;
-
+#[derive(Clone, Debug)]
 pub struct Station<'a> {
-    tex: Texture,
-    circle: CircleShape<'a>,
-    rotation: f32,
-    omega: f32,
-    align_view: bool,
+    pub tex: sfml::graphics::Texture,
+    pub circle: sfml::graphics::CircleShape<'a>,
+    pub align_view: bool,
 }
 
-impl<'a> Station<'a> {
-    pub fn new<'b>(radius: f32, omega: f32) -> Station<'b> {
-        let mut station = Station {
-            rotation: 0.0,
-            omega: omega,
-            tex: Texture::new_from_file("res/StationCross.png").unwrap(),
-            circle: CircleShape::new_init(radius, 64).unwrap(),
-            align_view: true, // Set to true if you want the view to be aligned to the rotation
-        };
-        station.circle.set_origin2f(radius,radius);
-        //station.sprite.set_texture(&station.tex, true);
-        //station.circle.set_position2f(0.0, 0.0);
-        station
+pub fn create(sys: &mut ecs::System) -> ecs::Entity {
+    //use sfml::graphics::Shape;
+    use sfml::graphics::Transformable;
+
+    let ent = sys.new_entity();
+    let mut station = Station {
+        tex: sfml::graphics::Texture::from_file("res/StationCross.png").unwrap(),
+        circle: sfml::graphics::CircleShape::new(::STATION_RADIUS, 64),
+        align_view: false,
+    };
+    //station.circle.set_fill_color(&sfml::graphics::Color::RED);
+    station.circle.set_origin((::STATION_RADIUS, ::STATION_RADIUS));
+    sys.add(ent, station).unwrap();
+    sys.add(ent, physics::Rotation(0.0)).unwrap();
+    sys.add(ent, physics::AngularVelocity(::ANGULAR_VELOCITY)).unwrap();
+    sys.add(ent, drawable::Drawable::new(draw)).unwrap();
+    sys.add(ent, graphics::EventHandler::new(handle_event)).unwrap();
+
+    ent
+}
+
+pub fn handle_event(sys: &mut ecs::System, ent: ecs::Entity, ev: &sfml::window::Event) {
+    if let &sfml::window::Event::KeyReleased { code: sfml::window::Key::V, .. } = ev {
+        let mut station = sys.borrow_mut::<Station>(ent).unwrap();
+        station.align_view = !station.align_view;
     }
 }
 
-impl<'a> Entity for Station<'a> {
-    fn update(&mut self, t: &Time) {
-        self.rotation = self.omega * t.as_seconds() * (360.0/(2.0*consts::PI));
-        //print!("{}\t{}\t", t.as_seconds(), self.rotation);
+pub fn draw(sys: &ecs::System, ent: ecs::Entity, gr: &mut graphics::Graphics) {
+    use sfml::graphics::RenderTarget;
+    use sfml::graphics::Transformable;
 
-    }
+    let station = sys.borrow::<Station>(ent).unwrap();
 
-    fn draw(&self, target: &mut RenderWindow) {
-        let mut sprite = Sprite::new().unwrap();
-        sprite.set_texture(&self.tex, true);
-        sprite.set_origin2f(256.0, 256.0);
-        sprite.set_rotation(self.rotation);
-        target.draw(&self.circle);
-        target.draw(&sprite);
+    let mut sprite = sfml::graphics::Sprite::new();
+    sprite.set_texture(&station.tex, true);
+    sprite.set_origin((256.0, 256.0));
+    let rotation = sys.borrow::<physics::Rotation>(ent).unwrap().0 / ::std::f32::consts::PI * 180.0;
+    sprite.set_rotation(rotation);
 
-        if self.align_view {
-            let mut view = target.get_view().to_owned();
-            view.set_rotation(self.rotation);
-            target.set_view(&view);
-        }
-    }
+    gr.window.draw(&station.circle);
+    gr.window.draw(&sprite);
 
-    fn handle_event(&mut self, _: CoriolisEvent) {
+    if station.align_view {
+        let mut view = gr.window.view().to_owned();
+        view.set_rotation(rotation);
+        gr.window.set_view(&view);
     }
 }
